@@ -15,7 +15,8 @@ const defaultTodoToAdd = (id: number): TodoType => ({
   id,
   name: '',
   description: '',
-  creationDate: Date.now().toString()
+  creationDate: Date.now().toString(),
+  isEditing: false
 });
 
 const defaultState: AppState = {
@@ -23,13 +24,36 @@ const defaultState: AppState = {
   todoToAdd: defaultTodoToAdd(0)
 };
 
-export const createStoreWithState: (state: AppState) => Store<AppState> = (state: AppState): Store<AppState> => {
-  return createStore(todoListReducer, state, composedMiddleware);
+function saveToLocalStorage(state: AppState) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (!serializedState) return undefined;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+}
+
+export const createStoreWithState: (state: AppState) => Store<AppState> = (): Store<AppState> => {
+  return createStore(todoListReducer, loadFromLocalStorage(), composedMiddleware);
 };
 
 export const createDefaultStore: () => Store<AppState> = (): Store<AppState> => {
-  return createStoreWithState(defaultState);
+  const store = createStoreWithState(defaultState);
+  store.subscribe(() => saveToLocalStorage(store.getState()));
+  return store;
 };
+
 
 const App = () => (
   <Provider store={createDefaultStore()}>

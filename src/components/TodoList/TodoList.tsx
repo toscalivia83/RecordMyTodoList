@@ -22,7 +22,7 @@ const TodoList = ({ todoList, todoToAdd, addTodo, todoToAddChanged }: Props & Di
             creationDate: 'now'
           })
         }/>
-      <button onClick={(): void => addTodo()}>Add</button>
+      <button onClick={(): void => addTodo()}>+ Add</button>
   </div>
 );
 
