@@ -1,4 +1,4 @@
-import { TodoType } from "../components/Todo/Todo";
+import { TodoType } from "../components/DisplayTodo/DisplayTodo";
 
 export interface AppState {
   todoList: TodoType[];

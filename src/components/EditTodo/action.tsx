@@ -1,5 +1,5 @@
-import { TodoActionType, TodoAction } from "../../../redux/actions";
-import { TodoType } from "../Todo";
+import { TodoActionType, TodoAction } from "../../redux/actions";
+import { TodoType } from "../DisplayTodo/DisplayTodo";
 
 export function startEditingTodoActionCreator(id: number): TodoAction {
   return {

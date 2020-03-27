@@ -1,11 +1,11 @@
-import { TodoActionType } from "../../redux/actions";
+import { TodoActionType, TodoAction } from "../../redux/actions";
 import { AppState } from "../../redux/app";
-import { TodoType } from "../Todo/Todo";
+import { TodoType } from "../DisplayTodo/DisplayTodo";
 
 const defaultTodoToAdd = (id: number): TodoType => ({
   id,
-  name: '',
-  description: '',
+  name: "",
+  description: "",
   creationDate: Date.now().toString(),
   isEditing: false
 });
@@ -15,8 +15,9 @@ const defaultTodoList: AppState = {
   todoToAdd: defaultTodoToAdd(0)
 };
 
-export const todoListReducer = (state = defaultTodoList, action: any) => {
+export const todoListReducer = (state = defaultTodoList, action: TodoAction): AppState => {
   const tempTodoList = [...state.todoList];
+  const payload = action.payload as TodoType;
   switch (action.type) {
     case TodoActionType.TODO_ADDED:
       return {
@@ -27,7 +28,7 @@ export const todoListReducer = (state = defaultTodoList, action: any) => {
     case TodoActionType.TODO_DELETED:
       return {
         ...state,
-        todoList: tempTodoList.filter(todo => todo.id !== action.payload.id)
+        todoList: tempTodoList.filter(todo => todo.id !== payload.id)
       };
     case TodoActionType.START_TODO_EDITING:
       return {
@@ -45,7 +46,7 @@ export const todoListReducer = (state = defaultTodoList, action: any) => {
         })
       };
     case TodoActionType.TODO_UPDATED:
-      tempTodoList.splice(action.payload.id, 1, action.payload)
+      tempTodoList.splice(payload.id, 1, payload);
       return {
         ...state,
         todoList: tempTodoList
@@ -55,10 +56,10 @@ export const todoListReducer = (state = defaultTodoList, action: any) => {
         ...state,
         todoToAdd: {
           ...state.todoToAdd,
-          description: action.payload.description,
-          name: action.payload.name
+          description: payload.description,
+          name: payload.name
         }
-      }
+      };
     default:
       return state;
   }

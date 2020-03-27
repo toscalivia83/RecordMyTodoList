@@ -1,4 +1,4 @@
-import { TodoType } from "../components/Todo/Todo";
+import { TodoType } from "../components/DisplayTodo/DisplayTodo";
 
 export enum TodoActionType {
   TODO_ADDED = "TODO_ADDED",
@@ -11,5 +11,5 @@ export enum TodoActionType {
 
 export interface TodoAction {
   type: TodoActionType;
-  payload?: TodoType | { todo: TodoType, isEditing: boolean} | number;
+  payload?: TodoType | number;
 }
