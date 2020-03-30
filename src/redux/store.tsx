@@ -3,7 +3,7 @@ import { StoreEnhancer, compose } from "redux";
 import { createStore, Store } from "redux";
 import { AppState } from "../redux/app";
 import { TodoType } from "../components/DisplayTodo/DisplayTodo";
-import { todoListReducer } from "../components/TodoList/TodoListReducer";
+import { rootReducer } from "./reducers";
 
 const middlewareList: StoreEnhancer[]= [devToolsEnhancer({})];
 const composedMiddleware: StoreEnhancer = compose(...middlewareList);
@@ -17,8 +17,16 @@ const defaultTodoToAdd = (id: number): TodoType => ({
 });
 
 const defaultState: AppState = {
-  todoList: [],
-  todoToAdd: defaultTodoToAdd(0)
+  todos: {
+    todoList: [],
+    todoToAdd: defaultTodoToAdd(0),
+  },
+  record: {
+    todoListSuite: [],
+    isRecording: false,
+    displayedRecordId: undefined,
+    todoListDisplayed: []
+  }
 };
 
 // const saveToLocalStorage = (state: AppState) => {
@@ -43,7 +51,7 @@ const defaultState: AppState = {
 
 export const createStoreWithState: (state: AppState) => Store<AppState> = (state: AppState): Store<AppState> => {
   return createStore(
-    todoListReducer,
+    rootReducer,
     // loadFromLocalStorage(),
     state,
     composedMiddleware);

@@ -28,3 +28,10 @@ export function todoDeletedActionCreator(todo: TodoType): TodoAction {
     payload: todo
   };
 }
+
+export function setRecordedTodoListDisplayedActionCreator(todoList: TodoType[]): TodoAction {
+  return {
+    type: TodoActionType.SET_RECORDED_TODO_LIST_DISPLAYED,
+    payload: todoList
+  };
+}

@@ -1,6 +1,6 @@
 import { TodoActionType, TodoAction } from "../../redux/actions";
-import { AppState } from "../../redux/app";
 import { TodoType } from "../DisplayTodo/DisplayTodo";
+import { TodoState } from "../../redux/app";
 
 const defaultTodoToAdd = (id: number): TodoType => ({
   id,
@@ -10,12 +10,12 @@ const defaultTodoToAdd = (id: number): TodoType => ({
   isEditing: false
 });
 
-const defaultTodoList: AppState = {
+const defaultTodoList: TodoState = {
   todoList: [],
   todoToAdd: defaultTodoToAdd(0)
 };
 
-export const todoListReducer = (state = defaultTodoList, action: TodoAction): AppState => {
+export const todoListReducer = (state = defaultTodoList, action: TodoAction): { todoList: TodoType[]; todoToAdd: TodoType } => {
   const tempTodoList = [...state.todoList];
   const payload = action.payload as TodoType;
   switch (action.type) {

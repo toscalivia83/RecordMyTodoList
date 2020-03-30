@@ -23,7 +23,13 @@ describe("<AddTodo /> suite", () => {
   
   it("should display the input to add a todo correctly", () => {
     const defaultStore = createDefaultStore();
-    const store = createStoreWithState({ ...defaultStore.getState(), todoToAdd: validAddTodo });
+    const store = createStoreWithState({
+      ...defaultStore.getState(),
+      todos: {
+        ...defaultStore.getState().todos,
+        todoToAdd: validAddTodo
+      }
+    });
     setupTest(store);
 
     expect(wrapper.find("input[name='todoToAdd']").exists()).toBeTruthy();

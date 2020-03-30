@@ -37,7 +37,13 @@ describe("<TodoList /> suite", () => {
 
   it("displays the todo list correctly", () => {
     const defaultStore = createDefaultStore();
-    const store = createStoreWithState({ ...defaultStore.getState(), todoList: validTodoList });
+    const store = createStoreWithState({
+      ...defaultStore.getState(),
+      todos: {
+        ...defaultStore.getState().todos,
+        todoList: validTodoList
+      }
+    });
     setupTest(store);
 
 

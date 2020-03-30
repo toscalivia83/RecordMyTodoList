@@ -25,7 +25,7 @@ const AddTodo = ({ todoToAdd, todoToAddChanged, addTodo }: AddTodoProps & AddTod
   </div>;
 
 const mapStateToProps = (state: AppState): AddTodoProps => ({
-  todoToAdd: state.todoToAdd
+  todoToAdd: state.todos.todoToAdd
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): AddTodoDispatchProps => ({
