@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoType } from "./components/DisplayTodo/DisplayTodo";
+import { TodoType } from "./components/Todo/Todo";
 import TodoList from "./components/TodoList/TodoList";
 import AddTodo from "./components/AddTodo/AddTodo";
 import Record from "./components/Record/Record";

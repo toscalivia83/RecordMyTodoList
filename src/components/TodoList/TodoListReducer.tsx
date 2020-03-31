@@ -1,5 +1,5 @@
 import { TodoActionType, TodoAction } from "../../redux/actions";
-import { TodoType } from "../DisplayTodo/DisplayTodo";
+import { TodoType } from "../Todo/Todo";
 import { TodoState } from "../../redux/app";
 
 const defaultTodoToAdd = (id: number): TodoType => ({
@@ -59,6 +59,11 @@ export const todoListReducer = (state = defaultTodoList, action: TodoAction): { 
           description: payload.description,
           name: payload.name
         }
+      };
+    case TodoActionType.SET_RECORDED_TODO_LIST_DISPLAYED:
+      return {
+        ...state,
+        todoList: action.payload as TodoType[]
       };
     default:
       return state;

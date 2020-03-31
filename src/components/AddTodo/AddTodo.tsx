@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoType } from "../DisplayTodo/DisplayTodo";
+import { TodoType } from "../Todo/Todo";
 import { connect } from "react-redux";
 import { AppState } from "../../redux/app";
 import { Dispatch } from "redux";

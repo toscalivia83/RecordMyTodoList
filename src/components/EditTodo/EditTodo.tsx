@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { TodoType } from "../DisplayTodo/DisplayTodo";
-import { startEditingTodoActionCreator, stopEditingTodoActionCreator } from "./action";
+import { TodoType } from "../Todo/Todo";
+import { stopEditingTodoActionCreator } from "./action";
 import { todoUpdatedActionCreator } from "../TodoList/action";
 
 const EditTodo = ({ id, name, description, creationDate, isEditing, stopEditingTodo, todoUpdated }: TodoType & DispatchProps): React.ReactElement => {
@@ -18,7 +18,7 @@ const EditTodo = ({ id, name, description, creationDate, isEditing, stopEditingT
       
       <button
         type="button"
-        name="SAVE"
+        name="save"
         onClick={(): void => {
           stopEditingTodo(id); 
         }}
@@ -28,9 +28,6 @@ const EditTodo = ({ id, name, description, creationDate, isEditing, stopEditingT
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  startEditingTodo: (id: number): void => {
-    dispatch(startEditingTodoActionCreator(id)); 
-  },
   stopEditingTodo: (id: number): void => {
     dispatch(stopEditingTodoActionCreator(id)); 
   },
@@ -42,7 +39,6 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 export default connect(null, mapDispatchToProps)(EditTodo);
 
 interface DispatchProps {
-  startEditingTodo: Function;
   stopEditingTodo: Function;
   todoUpdated: Function;
 }

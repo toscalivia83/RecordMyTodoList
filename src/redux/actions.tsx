@@ -1,4 +1,4 @@
-import { TodoType } from "../components/DisplayTodo/DisplayTodo";
+import { TodoType } from "../components/Todo/Todo";
 
 export enum TodoActionType {
   TODO_ADDED = "TODO_ADDED",
@@ -16,10 +16,12 @@ export enum RecordActionType {
   PLAY_RECORDING = "PLAY_RECORDING",
   END_PLAY_RECORDING = "END_PLAY_RECORDING",
   CLEAR_RECORDING = "CLEAR_RECORDING",
+  SET_DISPLAY_RECORD_ID = "SET_DISPLAY_RECORD_ID"
 }
 
 export interface RecordAction {
   type: RecordActionType;
+  payload?: number;
 }
 
 export interface TodoAction {

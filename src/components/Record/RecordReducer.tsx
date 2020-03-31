@@ -110,6 +110,11 @@ export const recordReducer = (state = defaultRecordReducer, action: RecordAction
         todoListSuite: [],
         displayedRecordId: undefined
       };
+    case RecordActionType.SET_DISPLAY_RECORD_ID:
+      return {
+        ...state,
+        displayedRecordId: action.payload
+      };
     default:
       return state;
   }

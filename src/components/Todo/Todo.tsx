@@ -5,7 +5,7 @@ import { todoDeletedActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
 import { startEditingTodoActionCreator } from "../EditTodo/action";
 
-const DisplayTodo = ({ id, name, description, creationDate, isEditing, startEditingTodo, deleteTodo }: TodoType & DispatchProps): React.ReactElement => {
+const Todo = ({ id, name, description, creationDate, isEditing, startEditingTodo, deleteTodo }: TodoType & DispatchProps): React.ReactElement => {
   return (
     <div>
       <button
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(DisplayTodo);
+export default connect(null, mapDispatchToProps)(Todo);
 
 interface DispatchProps {
   startEditingTodo: Function;

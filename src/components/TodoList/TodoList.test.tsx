@@ -5,7 +5,7 @@ import { mount, ReactWrapper } from "enzyme";
 import { Provider } from "react-redux";
 import { createStoreWithState, createDefaultStore } from "../../redux/store";
 import TodoList from "../TodoList/TodoList";
-import DisplayTodo, { TodoType } from "../DisplayTodo/DisplayTodo";
+import Todo, { TodoType } from "../Todo/Todo";
 
 const validTodoList: TodoType[] = [
   {
@@ -47,7 +47,7 @@ describe("<TodoList /> suite", () => {
     setupTest(store);
 
 
-    expect(wrapper.find(DisplayTodo)).toHaveLength(2);
+    expect(wrapper.find(Todo)).toHaveLength(2);
     // expect(wrapper.find("input[name='todoToAdd']").exists()).toBeTruthy();
   });
 });

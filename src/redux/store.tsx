@@ -2,7 +2,7 @@ import { devToolsEnhancer } from "redux-devtools-extension";
 import { StoreEnhancer, compose } from "redux";
 import { createStore, Store } from "redux";
 import { AppState } from "../redux/app";
-import { TodoType } from "../components/DisplayTodo/DisplayTodo";
+import { TodoType } from "../components/Todo/Todo";
 import { rootReducer } from "./reducers";
 
 const middlewareList: StoreEnhancer[]= [devToolsEnhancer({})];

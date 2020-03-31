@@ -1,17 +1,21 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import DisplayTodo, { TodoType } from "../DisplayTodo/DisplayTodo";
+import Todo, { TodoType } from "../Todo/Todo";
 import { AppState } from "../../redux/app";
 import { Dispatch } from "redux";
 import { setRecordedTodoListDisplayedActionCreator } from "./action";
+import { setDisplayedRecordIdActionCreator } from "../Record/action";
 
-const setRecordedTodoListTimeout = (setRecordedTodoListDisplayed: Function, todoList: TodoType[][], displayedRecordId?: number): void => {
+
+// START RECORD RELATED - TODO: extract somewhere else
+const setRecordedTodoListTimeout = (setRecordedTodoListDisplayed: Function, setDisplayedRecordId: Function, todoList: TodoType[][], displayedRecordId?: number): void => {
   setTimeout(function() {
-    if (displayedRecordId && displayedRecordId - 1 < todoList.length) {
+    if (displayedRecordId && displayedRecordId <= todoList.length) {
       console.log(todoList[displayedRecordId - 1]);
       setRecordedTodoListDisplayed(todoList[displayedRecordId-1]);
       displayedRecordId = displayedRecordId + 1;
-      setRecordedTodoListTimeout(setRecordedTodoListDisplayed, todoList, displayedRecordId);
+      setDisplayedRecordId(displayedRecordId);
+      setRecordedTodoListTimeout(setRecordedTodoListDisplayed, setDisplayedRecordId, todoList, displayedRecordId);
     }
   }, 1000);
 };
@@ -20,30 +24,33 @@ const getTodoListDisplayed = (recordedTodoListDisplayed: TodoType[]): TodoType[]
 
 const renderRecordedTodoList = (
   setRecordedTodoListDisplayed: Function,
+  setDisplayedRecordId: Function,
   todoListRecorded: TodoType[][],
   recordedTodoListDisplayed: TodoType[],
   displayedRecordId?: number,
 ): React.ReactElement[] => {
-  setRecordedTodoListTimeout(setRecordedTodoListDisplayed, todoListRecorded, displayedRecordId);
+  setRecordedTodoListTimeout(setRecordedTodoListDisplayed, setDisplayedRecordId, todoListRecorded, displayedRecordId);
   return (
     getTodoListDisplayed(recordedTodoListDisplayed).map((todo: TodoType) =>
-      <DisplayTodo key={todo.id} {...todo} />
+      <Todo key={todo.id} {...todo} />
     )
   );
 };
 
 const shouldDisplayRecorded = (displayedRecordId: number | undefined, todoListRecorded: TodoType[][]): boolean =>
   Boolean(displayedRecordId) && Boolean(todoListRecorded.length);
+// END RECORD RELATED
 
-const TodoList = ({ todoList, todoListRecorded, displayedRecordId, setRecordedTodoListDisplayed, recordedTodoListDisplayed }: Props & DispatchProps): React.ReactElement => 
+const TodoList = ({ todoList, todoListRecorded, displayedRecordId, setRecordedTodoListDisplayed, setDisplayedRecordId, recordedTodoListDisplayed }: Props & DispatchProps): React.ReactElement => 
   <div>
     {todoList.map((todo) =>
-      <DisplayTodo key={todo.id} {...todo}/>
+      <Todo key={todo.id} {...todo}/>
     )}
     {
       shouldDisplayRecorded(displayedRecordId, todoListRecorded)
       && renderRecordedTodoList(
         setRecordedTodoListDisplayed,
+        setDisplayedRecordId,
         todoListRecorded,
         recordedTodoListDisplayed,
         displayedRecordId
@@ -63,6 +70,9 @@ const mapStateToProps = (state: AppState): Props => ({
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   setRecordedTodoListDisplayed: (todoList: TodoType[]): void => {
     dispatch(setRecordedTodoListDisplayedActionCreator(todoList));
+  },
+  setDisplayedRecordId: (displayedRecordId: number): void => {
+    dispatch(setDisplayedRecordIdActionCreator(displayedRecordId));
   }
 });
 
@@ -77,4 +87,5 @@ interface Props {
 
 interface DispatchProps {
   setRecordedTodoListDisplayed: Function;
+  setDisplayedRecordId: Function;
 }
