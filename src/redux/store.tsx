@@ -9,8 +9,7 @@ const defaultTodoToAdd = (id: number): TodoType => ({
   id,
   name: "",
   description: "",
-  creationDate: moment().format("LLL"),
-  isEditing: false
+  creationDate: moment().format("LLL")
 });
 
 const defaultState: AppState = {

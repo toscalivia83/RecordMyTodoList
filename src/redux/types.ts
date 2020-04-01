@@ -20,7 +20,6 @@ export interface TodoType {
   name: string;
   description: string;
   creationDate: string;
-  isEditing: boolean;
 }
 
 export type StateProvider<T extends {}> = () => T;

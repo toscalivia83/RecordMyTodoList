@@ -14,14 +14,12 @@ const validTodoList: TodoType[] = [
     name: "",
     description: "",
     creationDate: "",
-    isEditing: false,
   },
   {
     id: 2,
     name: "",
     description: "",
     creationDate: "",
-    isEditing: false
   }
 ];
 
@@ -75,7 +73,6 @@ describe("<TodoList /> suite", () => {
 // //       name: "",
 // //       description: "",
 // //       creationDate: Date.now().toString(),
-// //       isEditing: false
 // //     }
 // //   };
 // // };

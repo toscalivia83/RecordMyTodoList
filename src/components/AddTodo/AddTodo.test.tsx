@@ -11,7 +11,6 @@ const validAddTodo: TodoType = {
   name: "",
   description: "",
   creationDate: "",
-  isEditing: false,
 };
 
 describe("<AddTodo /> suite", () => {

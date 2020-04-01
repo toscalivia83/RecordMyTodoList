@@ -8,7 +8,11 @@ interface DispatchProps {
   todoUpdated: Function;
 }
 
-const EditTodo = ({ id, name, description, creationDate, isEditing, todoUpdated }: TodoType & DispatchProps): React.ReactElement => {
+interface StateProps {
+  isEditing: boolean;
+}
+
+const EditTodo = ({ id, name, description, creationDate, isEditing, todoUpdated }: StateProps & TodoType & DispatchProps): React.ReactElement => {
   return (
     <div>
       <input

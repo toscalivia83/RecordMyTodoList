@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { todoDeletedActionCreator } from "../TodoList/action";
@@ -16,14 +16,16 @@ interface StateProps {
   isDisplayingRecord: boolean;
 }
 
-const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingRecord, startEditingTodo, stopEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
+const Todo = ({ id, name, description, creationDate, isDisplayingRecord, startEditingTodo, stopEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
+  const [isEditing, setIsEditing] = useState(false);
   return (
     <div>
       <button
         type="button"
         name="edit"
         onClick={(): void => {
-          startEditingTodo(id); 
+          setIsEditing(true);
+          startEditingTodo(id);
         }}>EDIT</button>
 
       {
@@ -39,7 +41,8 @@ const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingReco
               type="button"
               name="save"
               onClick={(): void => {
-                stopEditingTodo(id); 
+                setIsEditing(false);
+                stopEditingTodo(id);
               }}
             >Save</button>
           </>
