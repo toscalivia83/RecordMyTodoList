@@ -4,8 +4,9 @@ import { Dispatch } from "redux";
 import { todoDeletedActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
 import { startEditingTodoActionCreator } from "../EditTodo/action";
+import { AppState } from "../../redux/app";
 
-const Todo = ({ id, name, description, creationDate, isEditing, startEditingTodo, deleteTodo }: TodoType & DispatchProps): React.ReactElement => {
+const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingRecord, startEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
   return (
     <div>
       <button
@@ -16,7 +17,7 @@ const Todo = ({ id, name, description, creationDate, isEditing, startEditingTodo
         }}>EDIT</button>
 
       {
-        isEditing
+        isEditing && !isDisplayingRecord
           ? <EditTodo
             id={id}
             name={name}
@@ -39,6 +40,14 @@ const Todo = ({ id, name, description, creationDate, isEditing, startEditingTodo
   ;
 };
 
+interface StateProps {
+  isDisplayingRecord: boolean;
+}
+
+const mapStateToProps = (state: AppState): StateProps => ({
+  isDisplayingRecord: state.record.isDisplaying
+});
+
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   startEditingTodo: (id: number): void => {
     dispatch(startEditingTodoActionCreator(id)); 
@@ -48,7 +57,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(Todo);
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);
 
 interface DispatchProps {
   startEditingTodo: Function;

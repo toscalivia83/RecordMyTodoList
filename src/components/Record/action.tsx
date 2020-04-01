@@ -23,10 +23,3 @@ export function clearRecordingActionCreator(): RecordAction {
     type: RecordActionType.CLEAR_RECORDING
   };
 }
-
-export function setDisplayedRecordIdActionCreator(displayRecordId: number): RecordAction {
-  return {
-    type: RecordActionType.SET_DISPLAY_RECORD_ID,
-    payload: displayRecordId
-  };
-}

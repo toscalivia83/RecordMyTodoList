@@ -7,7 +7,7 @@ import { playRecordingActionCreator, startRecordingActionCreator, stopRecordingA
 const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClearRecord, onStopRecord }: Props & RecordDispatchProps): React.ReactElement => {
   return (
     <div>
-      {!isRecording && !hasTodoListSuite &&<button
+      {!isRecording &&<button
         type="button"
         name="record"
         onClick={(): void => onRecord()}
@@ -19,7 +19,7 @@ const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClear
         onClick={(): void => onStopRecord()}
       >Stop Recording</button>}
 
-      {!isRecording && hasTodoListSuite && <button
+      {<button
         type="button"
         name="play"
         onClick={(): void => onPlayRecord()}

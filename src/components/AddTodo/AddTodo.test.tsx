@@ -4,7 +4,7 @@ import { createDefaultStore, createStoreWithState } from "../../redux/store";
 import { Store } from "redux";
 import { Provider } from "react-redux";
 import { TodoType } from "../Todo/Todo";
-import { App } from "../../App";
+import App from "../../App";
 
 const validAddTodo: TodoType = {
   id: 0,

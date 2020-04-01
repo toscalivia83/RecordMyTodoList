@@ -5,9 +5,6 @@ import { AppState } from "../redux/app";
 import { TodoType } from "../components/Todo/Todo";
 import { rootReducer } from "./reducers";
 
-const middlewareList: StoreEnhancer[]= [devToolsEnhancer({})];
-const composedMiddleware: StoreEnhancer = compose(...middlewareList);
-
 const defaultTodoToAdd = (id: number): TodoType => ({
   id,
   name: "",
@@ -20,11 +17,12 @@ const defaultState: AppState = {
   todos: {
     todoList: [],
     todoToAdd: defaultTodoToAdd(0),
+    todoListSuite: []
   },
   record: {
     todoListSuite: [],
+    isDisplaying: false,
     isRecording: false,
-    displayedRecordId: undefined,
     todoListDisplayed: []
   }
 };
@@ -48,6 +46,13 @@ const defaultState: AppState = {
 //     return e;
 //   }
 // };
+
+const middlewareList: StoreEnhancer[]= [
+  devToolsEnhancer({})
+];
+const composedMiddleware: StoreEnhancer = compose(
+  ...middlewareList,
+);
 
 export const createStoreWithState: (state: AppState) => Store<AppState> = (state: AppState): Store<AppState> => {
   return createStore(

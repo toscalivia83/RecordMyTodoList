@@ -12,10 +12,11 @@ const defaultTodoToAdd = (id: number): TodoType => ({
 
 const defaultTodoList: TodoState = {
   todoList: [],
-  todoToAdd: defaultTodoToAdd(0)
+  todoToAdd: defaultTodoToAdd(0),
+  todoListSuite: [],
 };
 
-export const todoListReducer = (state = defaultTodoList, action: TodoAction): { todoList: TodoType[]; todoToAdd: TodoType } => {
+export const todoListReducer = (state = defaultTodoList, action: TodoAction): TodoState => {
   const tempTodoList = [...state.todoList];
   const payload = action.payload as TodoType;
   switch (action.type) {
@@ -23,12 +24,20 @@ export const todoListReducer = (state = defaultTodoList, action: TodoAction): { 
       return {
         ...state,
         todoList: tempTodoList.concat(state.todoToAdd),
-        todoToAdd: defaultTodoToAdd(state.todoToAdd.id + 1)
+        todoToAdd: defaultTodoToAdd(state.todoToAdd.id + 1),
+        todoListSuite: [...state.todoListSuite]
+          .concat(
+            [tempTodoList.concat(state.todoToAdd)]
+          )
       };
     case TodoActionType.TODO_DELETED:
       return {
         ...state,
-        todoList: tempTodoList.filter(todo => todo.id !== payload.id)
+        todoList: tempTodoList.filter(todo => todo.id !== payload.id),
+        todoListSuite: [...state.todoListSuite]
+          .concat(
+            [tempTodoList.filter(todo => todo.id !== payload.id)]
+          )
       };
     case TodoActionType.START_TODO_EDITING:
       return {
@@ -36,20 +45,23 @@ export const todoListReducer = (state = defaultTodoList, action: TodoAction): { 
         todoList: tempTodoList.filter(todo => todo.id === action.payload ? todo.isEditing = true : todo)
       };
     case TodoActionType.STOP_TODO_EDITING:
+      const updatedTodo = tempTodoList.filter(todo => {
+        if(todo.id === action.payload) {
+          todo.isEditing = false;
+        }
+        return todo;
+      });
       return {
         ...state,
-        todoList: tempTodoList.filter(todo => {
-          if(todo.id === action.payload) {
-            todo.isEditing = false;
-          }
-          return todo;
-        })
+        todoList: updatedTodo,
+        todoListSuite: [...state.todoListSuite]
+          .concat([updatedTodo])
       };
     case TodoActionType.TODO_UPDATED:
       tempTodoList.splice(payload.id, 1, payload);
       return {
         ...state,
-        todoList: tempTodoList
+        todoList: tempTodoList,
       };
     case TodoActionType.TODO_TO_ADD_CHANGED:
       return {

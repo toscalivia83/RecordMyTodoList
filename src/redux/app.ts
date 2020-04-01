@@ -8,11 +8,15 @@ export interface AppState {
 export interface TodoState {
   todoList: TodoType[];
   todoToAdd: TodoType;
+  todoListSuite: TodoType[][];
 }
 
 export interface RecordState {
   todoListSuite: TodoType[][];
+  isDisplaying: boolean;
   todoListDisplayed: TodoType[];
   isRecording: boolean;
-  displayedRecordId: number | undefined;
 }
+
+export type StateProvider<T extends {}> = () => T;
+export type AppStateProvider = StateProvider<AppState>;

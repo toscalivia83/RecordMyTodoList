@@ -16,12 +16,12 @@ export enum RecordActionType {
   PLAY_RECORDING = "PLAY_RECORDING",
   END_PLAY_RECORDING = "END_PLAY_RECORDING",
   CLEAR_RECORDING = "CLEAR_RECORDING",
-  SET_DISPLAY_RECORD_ID = "SET_DISPLAY_RECORD_ID"
+  SET_TODO_LIST_SUITE = "SET_TODO_LIST_SUITE"
 }
 
 export interface RecordAction {
   type: RecordActionType;
-  payload?: number;
+  payload?: number | TodoType[];
 }
 
 export interface TodoAction {

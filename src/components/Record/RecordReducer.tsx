@@ -1,85 +1,13 @@
 import { RecordAction, RecordActionType } from "../../redux/actions";
 import { RecordState } from "../../redux/app";
-
-const defaultTodoListSuite = [
-  [
-    {
-      id: 0,
-      name: "test",
-      description: "qwer",
-      creationDate: "1585571405116",
-      isEditing: false
-    }
-  ],
-  [
-    {
-      id: 0,
-      name: "test",
-      description: "qwer",
-      creationDate: "1585571405116",
-      isEditing: false
-    },
-    {
-      id: 1,
-      name: "test",
-      description: "wsdef",
-      creationDate: "1585571424963",
-      isEditing: false
-    }
-  ],
-  [
-    {
-      id: 0,
-      name: "test",
-      description: "qwersdf",
-      creationDate: "1585571405116",
-      isEditing: false
-    },
-    {
-      id: 1,
-      name: "test",
-      description: "wsdef",
-      creationDate: "1585571424963",
-      isEditing: false
-    }
-  ],
-  [
-    {
-      id: 0,
-      name: "test",
-      description: "qwersdf",
-      creationDate: "1585571405116",
-      isEditing: false
-    },
-    {
-      id: 1,
-      name: "test",
-      description: "wsdef",
-      creationDate: "1585571424963",
-      isEditing: false
-    },
-    {
-      id: 2,
-      name: "test",
-      description: "wsdef",
-      creationDate: "1585571437561",
-      isEditing: false
-    }
-  ]
-];
+import { TodoType } from "../Todo/Todo";
 
 const defaultRecordReducer: RecordState = {
-  todoListSuite: defaultTodoListSuite,
+  todoListSuite: [],
   isRecording: false,
-  displayedRecordId: undefined,
-  todoListDisplayed: []
+  todoListDisplayed: [],
+  isDisplaying: false
 };
-
-// all next actions will be saved this way:
-//  in TodoList component, it now displays record.todoList instead of todoList
-// if click on Add: push a new todo to record.todoList with id+1 and name entered
-// if click on Delete: splice of the related index in record.todoList to delete
-// if update: splice of the related index in record.todoList to update
 
 export const recordReducer = (state = defaultRecordReducer, action: RecordAction): RecordState => {
   switch(action.type) {
@@ -91,29 +19,27 @@ export const recordReducer = (state = defaultRecordReducer, action: RecordAction
     case RecordActionType.STOP_RECORDING:
       return {
         ...state,
-        isRecording: false,
-        todoListSuite: defaultTodoListSuite
+        isRecording: false
       };
     case RecordActionType.PLAY_RECORDING:
       return {
         ...state,
-        displayedRecordId: 1
+        isDisplaying: true
       };
     case RecordActionType.END_PLAY_RECORDING:
       return {
         ...state,
-        displayedRecordId: undefined
+        isDisplaying: false
       };
     case RecordActionType.CLEAR_RECORDING:
       return {
         ...state,
-        todoListSuite: [],
-        displayedRecordId: undefined
+        todoListSuite: []
       };
-    case RecordActionType.SET_DISPLAY_RECORD_ID:
+    case RecordActionType.SET_TODO_LIST_SUITE:
       return {
         ...state,
-        displayedRecordId: action.payload
+        todoListSuite: [...state.todoListSuite].concat([action.payload as TodoType[]])
       };
     default:
       return state;
