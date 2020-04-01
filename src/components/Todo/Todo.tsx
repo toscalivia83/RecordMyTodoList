@@ -33,7 +33,7 @@ const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingReco
             description={description}
             creationDate={creationDate}
             isEditing={isEditing} />
-          : <div>{id} - {name} - {description} - {creationDate}</div>
+          : <div>{description} (on the {creationDate})</div>
       }
 
       <div>

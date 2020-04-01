@@ -21,10 +21,8 @@ const AddTodo = ({ todoToAdd, todoToAddChanged, addTodo }: AddTodoProps & AddTod
       value={todoToAdd.description}
       onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
         todoToAddChanged({
-          id: todoToAdd.id,
-          name: "test",
+          ...todoToAdd,
           description: event.target.value,
-          creationDate: "now"
         })
       }/>
     <button

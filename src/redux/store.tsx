@@ -1,6 +1,7 @@
 import { devToolsEnhancer } from "redux-devtools-extension";
 import { StoreEnhancer, compose } from "redux";
 import { createStore, Store } from "redux";
+import moment from "moment";
 import { AppState, TodoType } from "../redux/types";
 import { rootReducer } from "./reducers";
 
@@ -8,7 +9,7 @@ const defaultTodoToAdd = (id: number): TodoType => ({
   id,
   name: "",
   description: "",
-  creationDate: Date.now().toString(),
+  creationDate: moment().format("LLL"),
   isEditing: false
 });
 

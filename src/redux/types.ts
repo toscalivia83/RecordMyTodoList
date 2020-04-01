@@ -19,7 +19,7 @@ export interface TodoType {
   id: number;
   name: string;
   description: string;
-  creationDate: string; // TODO: change to Date
+  creationDate: string;
   isEditing: boolean;
 }
 

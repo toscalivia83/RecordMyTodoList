@@ -1,3 +1,4 @@
+import moment from "moment";
 import { TodoActionType, TodoAction } from "../../redux/actions";
 import { TodoState, TodoType } from "../../redux/types";
 
@@ -5,7 +6,7 @@ const defaultTodoToAdd = (id: number): TodoType => ({
   id,
   name: "",
   description: "",
-  creationDate: Date.now().toString(),
+  creationDate: moment().format("LLL"),
   isEditing: false
 });
 

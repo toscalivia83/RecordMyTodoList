@@ -3,6 +3,8 @@ import Todo from "../Todo/Todo";
 import { AppState, TodoType } from "../../redux/types";
 import { connect } from "react-redux";
 
+const INTERVAL_VALUE = 1000;
+
 interface Props {
   todoListSuite: TodoType[][];
 }
@@ -11,6 +13,7 @@ const getTodoListDisplayed = (todoListSuite: TodoType[][], id: number): TodoType
 
 const TodoListInterval = ({ todoListSuite }: Props): React.ReactElement => {
   const [displayedRecordIndex, setDisplayedRecordIndex] = useState(0);
+  const [recordPlayEnded, setRecordPlayEnded] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,20 +22,20 @@ const TodoListInterval = ({ todoListSuite }: Props): React.ReactElement => {
           return displayedRecordIndex + 1;
         } else {
           clearInterval(interval);
+          setRecordPlayEnded(true);
           return displayedRecordIndex;
         }
       });
-    }, 1000);
+    }, INTERVAL_VALUE);
   }, []);
 
   return (
     <div>
-      {displayedRecordIndex} is the index.
-      <div>
-        {getTodoListDisplayed(todoListSuite, displayedRecordIndex).map((todo: TodoType) =>
+      {getTodoListDisplayed(todoListSuite, displayedRecordIndex)
+        .map((todo: TodoType) =>
           <Todo key={todo.id} {...todo} />
         )}
-      </div>
+      {recordPlayEnded && "End of the record :)"}
     </div>
   );
 };
