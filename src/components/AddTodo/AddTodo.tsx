@@ -1,9 +1,17 @@
 import React from "react";
-import { TodoType } from "../Todo/Todo";
 import { connect } from "react-redux";
-import { AppState } from "../../redux/app";
+import { AppState, TodoType } from "../../redux/types";
 import { Dispatch } from "redux";
 import { todoToAddChangedActionCreator, todoAddedActionCreator } from "./action";
+
+interface AddTodoProps {
+  todoToAdd: TodoType;
+}
+
+interface AddTodoDispatchProps {
+  todoToAddChanged: Function;
+  addTodo: Function;
+}
 
 const AddTodo = ({ todoToAdd, todoToAddChanged, addTodo }: AddTodoProps & AddTodoDispatchProps): React.ReactElement =>
   <div>
@@ -38,12 +46,3 @@ const mapDispatchToProps = (dispatch: Dispatch): AddTodoDispatchProps => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
-
-interface AddTodoProps {
-  todoToAdd: TodoType;
-}
-
-interface AddTodoDispatchProps {
-  todoToAddChanged: Function;
-  addTodo: Function;
-}

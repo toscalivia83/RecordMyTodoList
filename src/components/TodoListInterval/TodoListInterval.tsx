@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Todo, { TodoType } from "../Todo/Todo";
-import { AppState } from "../../redux/app";
+import Todo from "../Todo/Todo";
+import { AppState, TodoType } from "../../redux/types";
 import { connect } from "react-redux";
 
 interface Props {

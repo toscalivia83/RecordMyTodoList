@@ -1,8 +1,7 @@
 import { devToolsEnhancer } from "redux-devtools-extension";
 import { StoreEnhancer, compose } from "redux";
 import { createStore, Store } from "redux";
-import { AppState } from "../redux/app";
-import { TodoType } from "../components/Todo/Todo";
+import { AppState, TodoType } from "../redux/types";
 import { rootReducer } from "./reducers";
 
 const defaultTodoToAdd = (id: number): TodoType => ({
@@ -22,8 +21,7 @@ const defaultState: AppState = {
   record: {
     todoListSuite: [],
     isDisplaying: false,
-    isRecording: false,
-    todoListDisplayed: []
+    isRecording: false
   }
 };
 

@@ -4,7 +4,16 @@ import { Dispatch } from "redux";
 import { todoDeletedActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
 import { startEditingTodoActionCreator } from "../EditTodo/action";
-import { AppState } from "../../redux/app";
+import { AppState, TodoType } from "../../redux/types";
+
+interface DispatchProps {
+  startEditingTodo: Function;
+  deleteTodo: Function;
+}
+
+interface StateProps {
+  isDisplayingRecord: boolean;
+}
 
 const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingRecord, startEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
   return (
@@ -40,10 +49,6 @@ const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingReco
   ;
 };
 
-interface StateProps {
-  isDisplayingRecord: boolean;
-}
-
 const mapStateToProps = (state: AppState): StateProps => ({
   isDisplayingRecord: state.record.isDisplaying
 });
@@ -58,16 +63,3 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);
-
-interface DispatchProps {
-  startEditingTodo: Function;
-  deleteTodo: Function;
-}
-
-export interface TodoType {
-  id: number;
-  name: string;
-  description: string;
-  creationDate: string; // TODO: change to Date
-  isEditing: boolean;
-}

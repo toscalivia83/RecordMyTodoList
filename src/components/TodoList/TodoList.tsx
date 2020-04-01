@@ -1,13 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import Todo, { TodoType } from "../Todo/Todo";
-import { AppState } from "../../redux/app";
-import { Dispatch } from "redux";
-import { setRecordedTodoListDisplayedActionCreator } from "./action";
+import Todo from "../Todo/Todo";
+import { AppState, TodoType } from "../../redux/types";
 
 const TodoList = ({
   todoList
-}: Props & DispatchProps): React.ReactElement => 
+}: Props): React.ReactElement => 
   <div>
     {todoList.map((todo) =>
       <Todo key={todo.id} {...todo}/>
@@ -18,24 +16,12 @@ const TodoList = ({
 const mapStateToProps = (state: AppState): Props => ({
   todoList: state.todos.todoList,
 
-  todoListRecorded: state.record.todoListSuite,
-  recordedTodoListDisplayed: state.record.todoListDisplayed
+  todoListRecorded: state.record.todoListSuite
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  setRecordedTodoListDisplayed: (todoList: TodoType[]): void => {
-    dispatch(setRecordedTodoListDisplayedActionCreator(todoList));
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps)(TodoList);
 
 interface Props {
   todoList: TodoType[];
   todoListRecorded: TodoType[][];
-  recordedTodoListDisplayed: TodoType[];
-}
-
-interface DispatchProps {
-  setRecordedTodoListDisplayed: Function;
 }

@@ -1,11 +1,9 @@
 import { RecordAction, RecordActionType } from "../../redux/actions";
-import { RecordState } from "../../redux/app";
-import { TodoType } from "../Todo/Todo";
+import { RecordState } from "../../redux/types";
 
 const defaultRecordReducer: RecordState = {
   todoListSuite: [],
   isRecording: false,
-  todoListDisplayed: [],
   isDisplaying: false
 };
 
@@ -35,11 +33,6 @@ export const recordReducer = (state = defaultRecordReducer, action: RecordAction
       return {
         ...state,
         todoListSuite: []
-      };
-    case RecordActionType.SET_TODO_LIST_SUITE:
-      return {
-        ...state,
-        todoListSuite: [...state.todoListSuite].concat([action.payload as TodoType[]])
       };
     default:
       return state;

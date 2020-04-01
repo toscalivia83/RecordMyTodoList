@@ -4,8 +4,9 @@ import { Store } from "redux";
 import { mount, ReactWrapper } from "enzyme";
 import { Provider } from "react-redux";
 import { createStoreWithState, createDefaultStore } from "../../redux/store";
+import { TodoType } from "../../redux/types";
 import TodoList from "../TodoList/TodoList";
-import Todo, { TodoType } from "../Todo/Todo";
+import Todo from "../Todo/Todo";
 
 const validTodoList: TodoType[] = [
   {

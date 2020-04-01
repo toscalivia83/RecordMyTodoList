@@ -1,8 +1,20 @@
 import React from "react";
-import { AppState } from "../../redux/app";
+import { AppState } from "../../redux/types";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { playRecordingActionCreator, startRecordingActionCreator, stopRecordingActionCreator, clearRecordingActionCreator } from "./action";
+
+interface Props {
+  isRecording: boolean;
+  hasTodoListSuite: boolean;
+}
+
+interface RecordDispatchProps {
+  onRecord: Function;
+  onStopRecord: Function;
+  onPlayRecord: Function;
+  onClearRecord: Function;
+}
 
 const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClearRecord, onStopRecord }: Props & RecordDispatchProps): React.ReactElement => {
   return (
@@ -19,7 +31,7 @@ const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClear
         onClick={(): void => onStopRecord()}
       >Stop Recording</button>}
 
-      {<button
+      {hasTodoListSuite && !isRecording && <button
         type="button"
         name="play"
         onClick={(): void => onPlayRecord()}
@@ -36,7 +48,7 @@ const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClear
 
 const mapStateToProps = (state: AppState): Props => ({
   isRecording: state.record.isRecording,
-  hasTodoListSuite: Boolean(state.record.todoListSuite.length)
+  hasTodoListSuite: Boolean(state.todos.todoListSuite.length)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): RecordDispatchProps => ({
@@ -55,15 +67,3 @@ const mapDispatchToProps = (dispatch: Dispatch): RecordDispatchProps => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Record);
-
-interface Props {
-  isRecording: boolean;
-  hasTodoListSuite: boolean;
-}
-
-interface RecordDispatchProps {
-  onRecord: Function;
-  onStopRecord: Function;
-  onPlayRecord: Function;
-  onClearRecord: Function;
-}

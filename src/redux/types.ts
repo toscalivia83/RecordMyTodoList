@@ -1,5 +1,3 @@
-import { TodoType } from "../components/Todo/Todo";
-
 export interface AppState {
   todos: TodoState;
   record: RecordState;
@@ -14,8 +12,15 @@ export interface TodoState {
 export interface RecordState {
   todoListSuite: TodoType[][];
   isDisplaying: boolean;
-  todoListDisplayed: TodoType[];
   isRecording: boolean;
+}
+
+export interface TodoType {
+  id: number;
+  name: string;
+  description: string;
+  creationDate: string; // TODO: change to Date
+  isEditing: boolean;
 }
 
 export type StateProvider<T extends {}> = () => T;

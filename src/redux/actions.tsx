@@ -1,4 +1,4 @@
-import { TodoType } from "../components/Todo/Todo";
+import { TodoType } from "../redux/types";
 
 export enum TodoActionType {
   TODO_ADDED = "TODO_ADDED",
@@ -6,8 +6,7 @@ export enum TodoActionType {
   STOP_TODO_EDITING = "STOP_TODO_EDITING",
   TODO_UPDATED = "TODO_UPDATED",
   TODO_DELETED = "TODO_DELETED",
-  TODO_TO_ADD_CHANGED = "TODO_TO_ADD_CHANGED",
-  SET_RECORDED_TODO_LIST_DISPLAYED = "SET_RECORDED_TODO_LIST_DISPLAYED"
+  TODO_TO_ADD_CHANGED = "TODO_TO_ADD_CHANGED"
 }
 
 export enum RecordActionType {
@@ -15,13 +14,11 @@ export enum RecordActionType {
   STOP_RECORDING = "STOP_RECORDING",
   PLAY_RECORDING = "PLAY_RECORDING",
   END_PLAY_RECORDING = "END_PLAY_RECORDING",
-  CLEAR_RECORDING = "CLEAR_RECORDING",
-  SET_TODO_LIST_SUITE = "SET_TODO_LIST_SUITE"
+  CLEAR_RECORDING = "CLEAR_RECORDING"
 }
 
 export interface RecordAction {
   type: RecordActionType;
-  payload?: number | TodoType[];
 }
 
 export interface TodoAction {

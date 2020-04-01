@@ -1,10 +1,9 @@
 import React from "react";
-import { TodoType } from "./components/Todo/Todo";
+import { AppState, TodoType } from "./redux/types";
 import TodoList from "./components/TodoList/TodoList";
 import AddTodo from "./components/AddTodo/AddTodo";
 import Record from "./components/Record/Record";
 import TodoListInterval from "./components/TodoListInterval/TodoListInterval";
-import { AppState } from "./redux/app";
 import { connect } from "react-redux";
 
 class App extends React.Component<AppProps> {
