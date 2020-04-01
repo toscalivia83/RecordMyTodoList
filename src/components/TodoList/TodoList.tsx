@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import Todo from "../Todo/Todo";
 import { AppState, TodoType } from "../../redux/types";
 
-const TodoList = ({
-  todoList
-}: Props): React.ReactElement => 
+const TodoList = ({ todoList }: Props): React.ReactElement => 
   <div>
     {todoList.map((todo) =>
       <Todo key={todo.id} {...todo}/>
@@ -14,14 +12,11 @@ const TodoList = ({
 ;
 
 const mapStateToProps = (state: AppState): Props => ({
-  todoList: state.todos.todoList,
-
-  todoListRecorded: state.record.todoListSuite
+  todoList: state.todos.todoList
 });
 
 export default connect(mapStateToProps)(TodoList);
 
 interface Props {
   todoList: TodoType[];
-  todoListRecorded: TodoType[][];
 }
