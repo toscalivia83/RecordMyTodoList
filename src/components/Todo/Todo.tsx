@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { todoDeletedActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
-import { startEditingTodoActionCreator } from "../EditTodo/action";
+import { startEditingTodoActionCreator, stopEditingTodoActionCreator } from "../EditTodo/action";
 import { AppState, TodoType } from "../../redux/types";
 
 interface DispatchProps {
   startEditingTodo: Function;
+  stopEditingTodo: Function;
   deleteTodo: Function;
 }
 
@@ -15,7 +16,7 @@ interface StateProps {
   isDisplayingRecord: boolean;
 }
 
-const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingRecord, startEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
+const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingRecord, startEditingTodo, stopEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
   return (
     <div>
       <button
@@ -27,12 +28,21 @@ const Todo = ({ id, name, description, creationDate, isEditing, isDisplayingReco
 
       {
         isEditing && !isDisplayingRecord
-          ? <EditTodo
-            id={id}
-            name={name}
-            description={description}
-            creationDate={creationDate}
-            isEditing={isEditing} />
+          ? <>
+            <EditTodo
+              id={id}
+              name={name}
+              description={description}
+              creationDate={creationDate}
+              isEditing={isEditing} />
+            <button
+              type="button"
+              name="save"
+              onClick={(): void => {
+                stopEditingTodo(id); 
+              }}
+            >Save</button>
+          </>
           : <div>{description} (on the {creationDate})</div>
       }
 
@@ -56,6 +66,9 @@ const mapStateToProps = (state: AppState): StateProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   startEditingTodo: (id: number): void => {
     dispatch(startEditingTodoActionCreator(id)); 
+  },
+  stopEditingTodo: (id: number): void => {
+    dispatch(stopEditingTodoActionCreator(id)); 
   },
   deleteTodo: (todo: TodoType): void => {
     dispatch(todoDeletedActionCreator(todo)); 
