@@ -3,7 +3,7 @@ import { TodoType } from "./components/Todo/Todo";
 import TodoList from "./components/TodoList/TodoList";
 import AddTodo from "./components/AddTodo/AddTodo";
 import Record from "./components/Record/Record";
-import TimeoutComponent from "./components/TimeoutComponent/TimeoutComponent";
+import TodoListInterval from "./components/TodoListInterval/TodoListInterval";
 import { AppState } from "./redux/app";
 import { connect } from "react-redux";
 
@@ -17,7 +17,7 @@ class App extends React.Component<AppProps> {
       <div>
         {
           this.props.isDisplayingRecord
-            ? <TimeoutComponent />
+            ? <TodoListInterval />
             :
             <>
               <TodoList />

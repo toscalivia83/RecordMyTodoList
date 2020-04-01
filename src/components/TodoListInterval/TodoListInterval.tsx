@@ -9,7 +9,7 @@ interface Props {
 
 const getTodoListDisplayed = (todoListSuite: TodoType[][], id: number): TodoType[] => todoListSuite[id];
 
-const TimeoutComponent = ({ todoListSuite }: Props): React.ReactElement => {
+const TodoListInterval = ({ todoListSuite }: Props): React.ReactElement => {
   const [displayedRecordIndex, setDisplayedRecordIndex] = useState(0);
 
   useEffect(() => {
@@ -41,4 +41,4 @@ const mapStateToProps = (state: AppState): Props => ({
   todoListSuite: state.todos.todoListSuite
 });
 
-export default connect(mapStateToProps)(TimeoutComponent);
+export default connect(mapStateToProps)(TodoListInterval);
