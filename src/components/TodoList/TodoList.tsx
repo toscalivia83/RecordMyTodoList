@@ -4,7 +4,7 @@ import Todo from "../Todo/Todo";
 import { AppState, TodoType } from "../../redux/types";
 
 const TodoList = ({ todoList }: Props): React.ReactElement => 
-  <div>
+  <div id="todoListTest">
     {todoList.map((todo) =>
       <Todo key={todo.id} {...todo}/>
     )}

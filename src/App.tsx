@@ -5,6 +5,7 @@ import AddTodo from "./components/AddTodo/AddTodo";
 import Record from "./components/Record/Record";
 import TodoListInterval from "./components/TodoListInterval/TodoListInterval";
 import { connect } from "react-redux";
+import Header from "./components/Header/Header";
 
 class App extends React.Component<AppProps> {
   public constructor(props: AppProps) {
@@ -14,6 +15,7 @@ class App extends React.Component<AppProps> {
   public render (): React.ReactElement {
     return (
       <div>
+        <Header />
         {
           this.props.isDisplayingRecord
             ? <TodoListInterval />
