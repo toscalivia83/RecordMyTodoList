@@ -1,14 +1,14 @@
 import { TodoActionType, TodoAction } from "../../redux/actions";
 import { TodoType } from "../../redux/types";
 
-export function todoStartEditingActionCreator(id: number): TodoAction {
+export function startEditingTodoActionCreator(id: number): TodoAction {
   return {
     type: TodoActionType.START_TODO_EDITING,
     payload: id
   };
 }
 
-export function todoStopEditingActionCreator(id: number): TodoAction {
+export function stopEditingTodoActionCreator(id: number): TodoAction {
   return {
     type: TodoActionType.STOP_TODO_EDITING,
     payload: id

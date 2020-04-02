@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { todoDeletedActionCreator } from "../TodoList/action";
+import { todoDeletedActionCreator, startEditingTodoActionCreator, stopEditingTodoActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
-import { startEditingTodoActionCreator, stopEditingTodoActionCreator } from "../EditTodo/action";
 import { AppState, TodoType } from "../../redux/types";
 
 interface DispatchProps {
