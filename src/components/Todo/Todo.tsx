@@ -34,8 +34,7 @@ const Todo = ({ id, name, description, creationDate, isDisplayingRecord, startEd
               id={id}
               name={name}
               description={description}
-              creationDate={creationDate}
-              isEditing={isEditing} />
+              creationDate={creationDate} />
             <button
               type="button"
               name="save"

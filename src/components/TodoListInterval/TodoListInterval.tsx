@@ -31,10 +31,12 @@ const TodoListInterval = ({ todoListSuite }: Props): React.ReactElement => {
 
   return (
     <div>
-      {getTodoListDisplayed(todoListSuite, displayedRecordIndex)
-        .map((todo: TodoType) =>
-          <Todo key={todo.id} {...todo} />
-        )}
+      <div id="todoListInterval">
+        {getTodoListDisplayed(todoListSuite, displayedRecordIndex)
+          .map((todo: TodoType) =>
+            <Todo key={todo.id} {...todo} />
+          )}
+      </div>
       {recordPlayEnded && "End of the record :)"}
     </div>
   );

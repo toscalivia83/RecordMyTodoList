@@ -8,20 +8,16 @@ interface DispatchProps {
   todoUpdated: Function;
 }
 
-interface StateProps {
-  isEditing: boolean;
-}
-
-const EditTodo = ({ id, name, description, creationDate, isEditing, todoUpdated }: StateProps & TodoType & DispatchProps): React.ReactElement => {
+const EditTodo = ({ id, name, description, creationDate, todoUpdated }: TodoType & DispatchProps): React.ReactElement => {
   return (
     <div>
       <input
         type="text"
-        name="todoToAdd"
+        name="todoToEdit"
         value={description}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
-          todoUpdated({ id, name, description: event.target.value, creationDate, isEditing })
-        }/>
+        onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+          todoUpdated({ id, name, description: event.target.value, creationDate });
+        }}/>
     </div>
   );
 };

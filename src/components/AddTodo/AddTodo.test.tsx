@@ -20,7 +20,7 @@ describe("<AddTodo /> suite", () => {
     wrapper = mount(<Provider store={store}> <App /> </Provider>);
   };
   
-  it("should display the input to add a todo correctly", () => {
+  it("should display the input to add a todo correctly and add it to the todo list", () => {
     const defaultStore = createDefaultStore();
     const store = createStoreWithState({
       ...defaultStore.getState(),
@@ -32,5 +32,7 @@ describe("<AddTodo /> suite", () => {
     setupTest(store);
 
     expect(wrapper.find("input[name='todoToAdd']").exists()).toBeTruthy();
+    wrapper.find("button[name='addTodo']").simulate("click");
+    expect(store.getState().todos.todoList).toEqual([validAddTodo]);
   });
 });
