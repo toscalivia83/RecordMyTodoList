@@ -2,7 +2,6 @@ import React from "react";
 import { AppState } from "../../redux/types";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { playRecordingActionCreator, startRecordingActionCreator, stopRecordingActionCreator, clearRecordingActionCreator } from "./action";
 import styles from "./Record.module.css";
 
