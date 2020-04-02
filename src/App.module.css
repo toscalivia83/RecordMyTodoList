@@ -1,0 +1,21 @@
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.todos {
+  flex: 3;
+}
+
+input {
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px 12px 6px;
+  font-size: 16px;
+  line-height: 36px;
+  width: 70%;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  min-width: 0;
+}

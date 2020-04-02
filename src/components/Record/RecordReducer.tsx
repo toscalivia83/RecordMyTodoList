@@ -30,7 +30,7 @@ export const recordReducer = (state = defaultRecordReducer, action: RecordAction
       };
     case RecordActionType.CLEAR_RECORDING:
       return {
-        ...state // TODO: reinitialise the todolistsuite !
+        ...state
       };
     default:
       return state;

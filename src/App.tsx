@@ -6,6 +6,7 @@ import Record from "./components/Record/Record";
 import TodoListInterval from "./components/TodoListInterval/TodoListInterval";
 import { connect } from "react-redux";
 import Header from "./components/Header/Header";
+import styles from "./App.module.css";
 
 class App extends React.Component<AppProps> {
   public constructor(props: AppProps) {
@@ -20,11 +21,13 @@ class App extends React.Component<AppProps> {
           this.props.isDisplayingRecord
             ? <TodoListInterval />
             :
-            <>
-              <TodoList />
-              <AddTodo />
+            <div className={styles.content}>
+              <div className={styles.todos}>
+                <AddTodo />
+                <TodoList />
+              </div>
               <Record />
-            </>
+            </div>
         }
       </div>
     );

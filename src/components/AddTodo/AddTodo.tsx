@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { AppState, TodoType } from "../../redux/types";
 import { Dispatch } from "redux";
 import { todoToAddChangedActionCreator, todoAddedActionCreator } from "./action";
+import classnames from "classnames";
+import styles from "./AddTodo.module.css";
 
 interface AddTodoProps {
   todoToAdd: TodoType;
@@ -14,7 +16,7 @@ interface AddTodoDispatchProps {
 }
 
 const AddTodo = ({ todoToAdd, todoToAddChanged, addTodo }: AddTodoProps & AddTodoDispatchProps): React.ReactElement =>
-  <div>
+  <div className={styles.container}>
     <input
       type="text"
       name="todoToAdd"
@@ -24,10 +26,14 @@ const AddTodo = ({ todoToAdd, todoToAddChanged, addTodo }: AddTodoProps & AddTod
           ...todoToAdd,
           description: event.target.value,
         })
-      }/>
+      }
+      className={styles.input}
+    />
     <button
       name="addTodo"
-      onClick={(): void => addTodo()}>+ Add</button>
+      onClick={(): void => addTodo()}
+      className={classnames(styles.button,styles.addTodoButton)}
+    >+ Add</button>
   </div>;
 
 const mapStateToProps = (state: AppState): AddTodoProps => ({

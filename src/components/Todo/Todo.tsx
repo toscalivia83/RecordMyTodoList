@@ -4,6 +4,8 @@ import { Dispatch } from "redux";
 import { todoDeletedActionCreator, startEditingTodoActionCreator, stopEditingTodoActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
 import { AppState, TodoType } from "../../redux/types";
+import styles from "./Todo.module.css";
+import classnames from "classnames";
 
 interface DispatchProps {
   startEditingTodo: Function;
@@ -18,14 +20,16 @@ interface StateProps {
 const Todo = ({ id, name, description, creationDate, isDisplayingRecord, startEditingTodo, stopEditingTodo, deleteTodo }: TodoType & DispatchProps & StateProps): React.ReactElement => {
   const [isEditing, setIsEditing] = useState(false);
   return (
-    <div>
-      <button
+    <div className={styles.container}>
+      {!isDisplayingRecord && <button
         type="button"
         name="edit"
         onClick={(): void => {
           setIsEditing(true);
           startEditingTodo(id);
-        }}>EDIT</button>
+        }}
+        className={classnames(styles.button, styles.editButton)}
+      >EDIT</button>}
 
       {
         isEditing && !isDisplayingRecord
@@ -42,19 +46,25 @@ const Todo = ({ id, name, description, creationDate, isDisplayingRecord, startEd
                 setIsEditing(false);
                 stopEditingTodo(id);
               }}
+              className={classnames(styles.button, styles.saveButton)}
             >Save</button>
           </>
-          : <div>{description} (on the {creationDate})</div>
+          :
+          <div>
+            <div className={styles.description}>{description || "No todo..."}</div>
+            <div className={styles.displayDate}>({creationDate})</div>
+          </div>
       }
 
-      <div>
+      {!isDisplayingRecord && <div>
         <button
           type="button"
           name="delete"
           onClick={(): void => {
             deleteTodo({ id, name, description, creationDate });
-          }}>X</button>
-      </div>
+          }}
+          className={classnames(styles.button, styles.deleteButton)}>X</button>
+      </div>}
     </div>
   )
   ;

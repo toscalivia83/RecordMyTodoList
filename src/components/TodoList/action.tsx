@@ -15,13 +15,6 @@ export function stopEditingTodoActionCreator(id: number): TodoAction {
   };
 }
 
-export function todoUpdatedActionCreator(todo: TodoType): TodoAction {
-  return {
-    type: TodoActionType.TODO_UPDATED,
-    payload: todo
-  };
-}
-
 export function todoDeletedActionCreator(todo: TodoType): TodoAction {
   return {
     type: TodoActionType.TODO_DELETED,
