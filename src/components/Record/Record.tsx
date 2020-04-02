@@ -19,7 +19,7 @@ interface RecordDispatchProps {
 const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClearRecord, onStopRecord }: Props & RecordDispatchProps): React.ReactElement => {
   return (
     <div>
-      {!isRecording &&<button
+      {!hasTodoListSuite && !isRecording &&<button
         type="button"
         name="record"
         onClick={(): void => onRecord()}

@@ -19,7 +19,6 @@ const defaultState: AppState = {
     todoListSuite: []
   },
   record: {
-    todoListSuite: [],
     isDisplaying: false,
     isRecording: false
   }

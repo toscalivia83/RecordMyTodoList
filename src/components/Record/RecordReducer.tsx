@@ -2,7 +2,6 @@ import { RecordAction, RecordActionType } from "../../redux/actions";
 import { RecordState } from "../../redux/types";
 
 const defaultRecordReducer: RecordState = {
-  todoListSuite: [],
   isRecording: false,
   isDisplaying: false
 };
@@ -31,8 +30,7 @@ export const recordReducer = (state = defaultRecordReducer, action: RecordAction
       };
     case RecordActionType.CLEAR_RECORDING:
       return {
-        ...state,
-        todoListSuite: []
+        ...state // TODO: reinitialise the todolistsuite !
       };
     default:
       return state;

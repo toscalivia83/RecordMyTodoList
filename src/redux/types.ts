@@ -10,7 +10,6 @@ export interface TodoState {
 }
 
 export interface RecordState {
-  todoListSuite: TodoType[][];
   isDisplaying: boolean;
   isRecording: boolean;
 }
