@@ -2,8 +2,8 @@ import React from "react";
 import { AppState } from "../../redux/types";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { playRecordingActionCreator, startRecordingActionCreator, stopRecordingActionCreator, clearRecordingActionCreator } from "./action";
 import styles from "./Record.module.css";
+import { startRecordingActionCreator, stopRecordingActionCreator, playRecordingActionCreator, clearRecordingActionCreator } from "../../redux/record/action";
 
 interface Props {
   isRecording: boolean;
@@ -20,7 +20,7 @@ interface RecordDispatchProps {
 const Record = ({ isRecording, hasTodoListSuite, onPlayRecord, onRecord, onClearRecord, onStopRecord }: Props & RecordDispatchProps): React.ReactElement => {
   return (
     <div className={styles.container}>
-      {!hasTodoListSuite && !isRecording &&<button
+      {!hasTodoListSuite && !isRecording && <button
         type="button"
         name="record"
         onClick={(): void => onRecord()}

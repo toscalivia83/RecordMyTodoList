@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { TodoType } from "../../redux/types";
-import { todoUpdatedActionCreator } from "./action";
+import { TodoType } from "../../redux/todoList/types";
+import { todoUpdatedActionCreator } from "../../redux/todoList/action";
 
 interface DispatchProps {
   todoUpdated: Function;

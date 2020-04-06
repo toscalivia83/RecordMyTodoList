@@ -1,7 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import Todo from "../Todo/Todo";
-import { AppState, TodoType } from "../../redux/types";
+import { AppState } from "../../redux/types";
+import { TodoType } from "../../redux/todoList/types";
 import styles from "./TodoList.module.css";
 
 const TodoList = ({ todoList }: Props): React.ReactElement => 

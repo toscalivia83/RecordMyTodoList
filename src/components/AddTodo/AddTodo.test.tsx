@@ -3,7 +3,7 @@ import { ReactWrapper, mount } from "enzyme";
 import { createDefaultStore, createStoreWithState } from "../../redux/store";
 import { Store } from "redux";
 import { Provider } from "react-redux";
-import { TodoType } from "../../redux/types";
+import { TodoType } from "../../redux/todoList/types";
 import App from "../../App";
 
 const validAddTodo: TodoType = {

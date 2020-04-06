@@ -2,7 +2,8 @@ import { devToolsEnhancer } from "redux-devtools-extension";
 import { StoreEnhancer, compose } from "redux";
 import { createStore, Store } from "redux";
 import moment from "moment";
-import { AppState, TodoType } from "../redux/types";
+import { AppState } from "../redux/types";
+import { TodoType } from "../redux/todoList/types";
 import { rootReducer } from "./reducers";
 
 const defaultTodoToAdd = (id: number): TodoType => ({

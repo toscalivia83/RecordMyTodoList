@@ -1,4 +1,4 @@
-import { TodoType } from "../redux/types";
+import { TodoType } from "../redux/todoList/types";
 
 export enum TodoActionType {
   TODO_ADDED = "TODO_ADDED",

@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { AppState, TodoType } from "../../redux/types";
+import { AppState } from "../../redux/types";
+import { TodoType } from "../../redux/todoList/types";
 import { Dispatch } from "redux";
-import { todoToAddChangedActionCreator, todoAddedActionCreator } from "./action";
 import classnames from "classnames";
 import styles from "./AddTodo.module.css";
+import { todoToAddChangedActionCreator, todoAddedActionCreator } from "../../redux/todoList/action";
 
 interface AddTodoProps {
   todoToAdd: TodoType;

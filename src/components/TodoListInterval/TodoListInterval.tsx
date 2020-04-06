@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Todo from "../Todo/Todo";
-import { AppState, TodoType } from "../../redux/types";
+import { AppState } from "../../redux/types";
+import { TodoType } from "../../redux/todoList/types";
 import { connect } from "react-redux";
 
 const INTERVAL_VALUE = 1000;

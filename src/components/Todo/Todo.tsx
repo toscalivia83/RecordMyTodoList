@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { todoDeletedActionCreator, startEditingTodoActionCreator, stopEditingTodoActionCreator } from "../TodoList/action";
 import EditTodo from "../EditTodo/EditTodo";
-import { AppState, TodoType } from "../../redux/types";
+import { AppState } from "../../redux/types";
+import { TodoType } from "../../redux/todoList/types";
 import styles from "./Todo.module.css";
 import classnames from "classnames";
+import { startEditingTodoActionCreator, stopEditingTodoActionCreator, todoDeletedActionCreator } from "../../redux/todoList/action";
 
 interface DispatchProps {
   startEditingTodo: Function;

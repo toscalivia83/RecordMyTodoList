@@ -4,7 +4,7 @@ import { Store } from "redux";
 import { mount, ReactWrapper } from "enzyme";
 import { Provider } from "react-redux";
 import { createStoreWithState, createDefaultStore } from "../../redux/store";
-import { TodoType } from "../../redux/types";
+import { TodoType } from "../../redux/todoList/types";
 import Todo from "../Todo/Todo";
 import App from "../../App";
 

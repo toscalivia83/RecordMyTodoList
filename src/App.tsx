@@ -1,5 +1,6 @@
 import React from "react";
-import { AppState, TodoType } from "./redux/types";
+import { AppState } from "./redux/types";
+import { TodoType } from "./redux/todoList/types";
 import TodoList from "./components/TodoList/TodoList";
 import AddTodo from "./components/AddTodo/AddTodo";
 import Record from "./components/Record/Record";
@@ -8,31 +9,24 @@ import { connect } from "react-redux";
 import Header from "./components/Header/Header";
 import styles from "./App.module.css";
 
-class App extends React.Component<AppProps> {
-  public constructor(props: AppProps) {
-    super(props);
-  }
-
-  public render (): React.ReactElement {
-    return (
-      <div>
-        <Header />
-        {
-          this.props.isDisplayingRecord
-            ? <TodoListInterval />
-            :
-            <div className={styles.content}>
-              <div className={styles.todos}>
-                <AddTodo />
-                <TodoList />
-              </div>
-              <Record />
-            </div>
-        }
-      </div>
-    );
-  }
-}
+const App: React.FC<AppProps> = ({ isDisplayingRecord }: AppProps) => {
+  return (
+    <div>
+      <Header />
+      {isDisplayingRecord ? 
+        <TodoListInterval />
+        : 
+        <div className={styles.content}>
+          <div className={styles.todos}>
+            <AddTodo />
+            <TodoList />
+          </div>
+          <Record />
+        </div>
+      }
+    </div>
+  );
+};
 
 export interface AppProps {
   todoList: TodoType[];
@@ -41,7 +35,7 @@ export interface AppProps {
 }
 
 const mapStateToProps = (state: AppState): AppProps => ({
-  isDisplayingRecord: Boolean(state.record.isDisplaying),
+  isDisplayingRecord: state.record.isDisplaying,
   todoList: state.todos.todoList,
   todoToAdd: state.todos.todoToAdd,
 });
