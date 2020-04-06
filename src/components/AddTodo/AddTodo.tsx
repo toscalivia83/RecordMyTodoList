@@ -34,7 +34,7 @@ const AddTodo = ({ todoToAdd, todoToAddChanged, addTodo }: AddTodoProps & AddTod
       name="addTodo"
       onClick={(): void => addTodo()}
       className={classnames(styles.button,styles.addTodoButton)}
-    >+ Add</button>
+    >Add</button>
   </div>;
 
 const mapStateToProps = (state: AppState): AddTodoProps => ({

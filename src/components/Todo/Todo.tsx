@@ -51,7 +51,7 @@ const Todo = ({ id, name, description, creationDate, isDisplayingRecord, startEd
             >Save</button>
           </>
           :
-          <div>
+          <div className={styles.text}>
             <div className={styles.description}>{description || "No todo..."}</div>
             <div className={styles.displayDate}>({creationDate})</div>
           </div>
